@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <style>
+        body {
+            font-family: FOGLIGHTEN;
+            margin: 0;
+            padding: 0;
+            background-color: #F8F8F8;
+        }
+
+        /* Sidebar styling with curved edges */
+        .sidebar {
+            width: 250px; /* Increased sidebar width for better visibility */
+            height: 100vh; /* Full height of the viewport */
+            background-color: #333; /* Sidebar background */
+            color: white;
+            position: fixed;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centers items vertically */
+            align-items: center; /* Centers items horizontally */
+            gap: 20px; /* Gap between links */
+            border-top-right-radius: 30px; /* Curve the edges */
+            border-bottom-right-radius: 30px; /* Curve the edges */
+            left: 0; /* Align sidebar to left */
+        }
+
+        .sidebar h1 {
+            font-size: 35px; /* Larger font size for Sinjlawi Auto */
+            margin-bottom: 30px; /* Space between title and links */
+        }
+
+        .sidebar a {
+            font-size: 22px; /* Larger font size for sidebar links */
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px 0; /* Increased padding for better clickability */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #333;
+            background-color: white; /* Highlight on hover */
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sidebar a:active {
+            background-color: #555; /* Color when clicked */
+        }
+
+        /* Section for sign-out, raised slightly more */
+        .sidebar .sign-out {
+            margin-top: auto; /* Pushes this section to the bottom */
+            margin-bottom: 30px; /* Raised further up */
+        }
+
+        .sidebar .sign-out button {
+            background-color: white; /* Matches the sidebar color */
+            color: #333;
+        }
+
+        .sidebar .sign-out button:hover {
+            background-color: black; /* Matches the sidebar color */
+            color: white;
+        }
+
+        .sidebar .sign-out a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 15px 0; /* Increased padding for better clickability */
+            font-size: 28px; /* Larger font size for sidebar links */
+
+        }
+
+        .sidebar .sign-out a:hover {
+            background-color: #612f00; /* Highlight on hover */
+        }
+
+        .content {
+            margin-left: 280px; /* Increased content margin to accommodate wider sidebar */
+            padding: 10px;
+            color: #333;
+            text-align: center; /* Center content */
+            font-size: 25px; /* Larger font size for sidebar links */
+        }
+
+        .insert-container, .delete-container, .update-container {
+            font-size: 20px; /* Increase font size */
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            padding: 30px; /* Padding for content */
+            background-color: white;
+            border-radius: 5px; /* Rounded edges */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            display: none; /* Initially hidden */
+            color: #333;
+        }
+
+        .users-container {
+            width: 100%;
+            max-width: 800px; /* Increase max width for more space */
+            margin: auto;
+            padding: 40px; /* Padding for content */
+            background-color: #ffffff;
+            border-radius: 160px; /* Rounded edges */
+            box-shadow: 0 0 10px rgba(0.1, 0.1, 0.2, 0.1); /* Soft shadow */
+            display: none; /* Initially hidden */
+            text-align: center; /* Align title to the left */
+            font-size: 25px; /* Increase font size */
+            margin-bottom: 40px; /* Space between title and form */
+            color: #333;
+        }
+
+        .insert-container h2, .delete-container h2, .update-container h2 {
+            text-align: left; /* Align title to the left */
+            font-size: 40px; /* Increase font size */
+            margin-bottom: 40px; /* Space between title and form */
+            color: #333;
+
+        }
+
+        .insert-container h3 {
+            text-align: left; /* Align title to the left */
+            font-size: 30px; /* Increase font size */
+            margin-bottom: 40px; /* Space between title and form */
+            color: #333;
+
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px; /* Increase space between rows */
+        }
+
+        .form-group {
+            flex: 1; /* Equal space */
+            padding: 0 15px; /* More space within form rows */
+            text-align: left; /* Align form elements to the left */
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px; /* Space between label and input */
+        }
+
+        input, select {
+            width: calc(100% - 20px); /* Width minus padding */
+            padding: 12px; /* Padding for inputs */
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Smoother edges */
+        }
+
+        button {
+            font-style: italic;
+            font-size: medium;
+            width: 100%;
+            padding: 15px; /* Padding for the button */
+            background-color: #333; /* Matches the sidebar color */
+            color: white;
+            border: none;
+            border-radius: 5px; /* Rounded edges */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px; /* More space above the button */
+        }
+
+        button:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        .users-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 40px; /* Space between user cards */
+            justify-items: center; /* Center the user cards */
+            color: #333;
+        }
+
+        .user-card {
+            width: 100%;
+            max-width: 350px; /* Fixed size to ensure consistency */
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            font-weight: bold;
+            font-size: 21px; /* Increase font size */
+            color: #333;
+        }
+
+        .user-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .user-info {
+            text-align: left;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+<div class="sidebar">
+    <h1>Sinjlawi Auto</h1>
+    <a href="#" onclick="showUsers()">Employees</a>
+    <a href="#" onclick="showInsert()">Add Car</a>
+    <a href="#" onclick="showDelete()">Remove Car</a>
+    <a href="#" onclick="showUpdate()">Update Car Details</a>
+    <a href="#" onclick="showSoldReserve()">Reset Sold/Reserved Car</a>
+    <a href="#" onclick="showSettings()">Complaints</a>
+
+    <form action="/show_sold_car" method="POST">
+        <a href="show_sold_car">Show All Sold Cars</a>
+    </form>
+
+    <form action="/show_reserved_car" method="POST">
+        <a href="show_reserved_car">Show All Reserved Cars</a>
+    </form>
+
+    <form action="/show_car" method="POST">
+        <a href="show_car">Show All Cars</a>
+    </form>
+
+    <div class="sign-out">
+        <form action="/" method="GET">
+            <button type="submit">Sign Out</button>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="delete-container" id="sold_reserve">
+        <h2>Reset Sold/Reserve Car</h2>
+        <form action="/reset_sold" method="POST">
+            <div class="form-group">
+                <label for="chassis_number_sold">Chassis Number:</label>
+                <input type="text" id="chassis_number_sold" name="chassis_number" required>
+            </div>
+            <button type="submit">Reset Sold Car</button>
+        </form>
+
+        <form action="/reset_reserved" method="POST">
+            <div class="form-group">
+                <label for="chassis_number_reserved">Chassis Number:</label>
+                <input type="text" id="chassis_number_reserved" name="chassis_number" required>
+            </div>
+            <button type="submit">Reset Reserved Car</button>
+        </form>
+    </div>
+
+    <div class="insert-container" id="insert">
+        <h2>Add Car</h2>
+        <form action="/insert" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="chassis_num">Chassis Number:</label>
+                    <input type="text" id="chassis_num" name="chassis_num" maxlength="17"
+                           pattern="^(?!.*[OIoi])[A-Za-z0-9]{1,17}$" required>
+                </div>
+                <div class="form-group">
+                    <label for="car">Manufacturing Company:</label>
+                    <select id="car" name="car">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="BMW">BMW</option>
+                        <option value="JEEP">JEEP</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Skoda">Skoda</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="Hyundai">Hyundai</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Fiat">Fiat</option>
+                        <option value="Kia">Kia</option>
+                        <option value="Mazda">Mazda</option>
+                        <option value="Toyota">Toyota</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="motor_size">Motor Size:</label>
+                    <select id="motor_size" name="motor_size">
+                        <option value="" disabled selected>Select</option>
+                        <option value="1.2">1200</option>
+                        <option value="1.4">1400</option>
+                        <option value="1.6">1600</option>
+                        <option value="2">2000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fuel">Fuel type:</label>
+                    <select id="fuel" name="fuel">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Solar">Solar</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transmission">Transmission type:</label>
+                    <select id="transmission" name="transmission">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <select id="color" name="color">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Red">Red</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Green">Green</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <select id="model" name="model">
+                        <option value="" disabled selected>Select</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Pick-Up">Pick-Up</option>
+                        <option value="Van">Van</option>
+                        <option value="4x4">4x4</option>
+                        <option value="Vintage">Vintage</option>
+                        <option value="Coupes">Coupes</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Release Year:</label>
+                    <input type="number" id="year" name="year" min="1995" max="2025" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price in $K:</label>
+                    <input type="number" id="price" name="price" min="20.00" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="branch_number">Branch Number:</label>
+                    <select id="branch_number" name="branch_number">
+                        <option value="B001">B001</option>
+                        <option value="B002">B002</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car_image">Choose a Car Image (.jpg):</label>
+                    <input type="file" id="car_image" name="car_image" accept="image/jpeg" required>
+                </div>
+            </div>
+            <img src="static\images\car_image.png" alt="Car image" width="350px"/>
+            <button type="submit">Add Car</button>
+        </form>
+    </div>
+
+    <div class="delete-container" id="delete">
+        <h2>Delete Car from system</h2>
+        <form action="/delete" method="POST">
+            <div class="form-group">
+                <label for="chassis_num">Chassis Number:</label>
+                <input type="text" id="chassis_num" name="chassis_num" maxlength="17"
+                       pattern="^(?!.*[OIoi])[A-Za-z0-9]{1,17}$" required>
+            </div>
+            <img src="static\images\car_image2.png" alt="Car Image 2" width="350px"/>
+            <button type="submit">Delete Car</button>
+        </form>
+    </div>
+
+    <div class="update-container" id="update">
+        <h2>Update Car Details</h2>
+        <form action="/update" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="chassis_num">Chassis Number:</label>
+                    <input type="text" id="chassis_num" name="chassis_num" maxlength="17"
+                           pattern="^(?!.*[OIoi])[A-Za-z0-9]{1,17}$" required>
+                </div>
+                <div class="form-group">
+                    <label for="car">Manufacturing Company:</label>
+                    <select id="car" name="car">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="BMW">BMW</option>
+                        <option value="JEEP">JEEP</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Skoda">Skoda</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="Hyundai">Hyundai</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Fiat">Fiat</option>
+                        <option value="Kia">Kia</option>
+                        <option value="Mazda">Mazda</option>
+                        <option value="Toyota">Toyota</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="motor_size">Motor Size:</label>
+                    <select id="motor_size" name="motor_size">
+                        <option value="" disabled selected>Select</option>
+                        <option value="1.2">1200</option>
+                        <option value="1.4">1400</option>
+                        <option value="1.6">1600</option>
+                        <option value="2">2000</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fuel">Fuel type:</label>
+                    <select id="fuel" name="fuel">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Solar">Solar</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transmission">Transmission type:</label>
+                    <select id="transmission" name="transmission">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="color">Color:</label>
+                    <select id="color" name="color">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Red">Red</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Green">Green</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="model">Model:</label>
+                    <select id="model" name="model">
+                        <option value="" disabled selected>Select</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Pick-Up">Pick-Up</option>
+                        <option value="Van">Van</option>
+                        <option value="4x4">4x4</option>
+                        <option value="Vintage">Vintage</option>
+                        <option value="Coupes">Coupes</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Release Year:</label>
+                    <input type="number" id="year" name="year" min="1995" max="2025">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price in $K:</label>
+                    <input type="number" id="price" name="price" min="20.00">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ssn">SSN:</label>
+                    <input type="number" id="ssn" name="ssn" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="branch_number">Branch Number:</label>
+                    <select id="branch_number" name="branch_number">
+                        <option value="B001">B001</option>
+                        <option value="B002">B002</option>
+                    </select>
+                </div>
+            </div>
+            <img src="static\images\car_image3.png" alt="Car Image 3" width="350px"/>
+            <button type="submit">Update Car details</button>
+        </form>
+    </div>
+
+    <div class="users-container" id="users">
+        <h2>Our Professional Team </h2>
+        {% for employee in employees %}
+        <div class="user-card">
+            <img class="user-img" alt="user image" src={{ employee['image'] }}>
+            <div class="user-info">
+                <p>{{ employee['Name'] }}</p>
+                <p>{{ employee['Profession'] }}</p>
+                <p>{{ employee['Phone'] }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="settings-container" id="settings" style="text-align: center; background-color: white;">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <h2 style="margin-bottom: 20px;">Most Frequent User Complaints</h2>
+            <div style="text-align: left;">
+                <ul>
+                    <li>The need for Longer working hours</li>
+                    <li>More employees for better customer accommodation</li>
+                    <li>More Branches around Palestine to reduce transportation time</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 30px;">
+            <h3>Employee ideas to resolve the issues mentioned above:</h3>
+            <textarea id="userComplaint" rows="4" cols="50" style="margin-top: 10px;"></textarea>
+        </div>
+        <div style="margin-top: 20px;">
+            <button onclick="submitComplaint()"
+                    style="padding: 12px 25px; font-size: 16px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Submit
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showInsert() {
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('delete').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('users').style.display = 'none';
+        document.getElementById('sold_reserve').style.display = 'none';
+    }
+
+    function showDelete() {
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('delete').style.display = 'block';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('users').style.display = 'none';
+        document.getElementById('sold_reserve').style.display = 'none';
+    }
+
+    function showUpdate() {
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+        document.getElementById('update').style.display = 'block';
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('users').style.display = 'none';
+        document.getElementById('sold_reserve').style.display = 'none';
+    }
+
+    function showUsers() {
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('users').style.display = 'grid';
+        document.getElementById('sold_reserve').style.display = 'none';
+    }
+
+    function showSoldReserve() {
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('users').style.display = 'none';
+        document.getElementById('sold_reserve').style.display = 'block';
+    }
+
+    function showSettings() {
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('settings').style.display = 'block';
+        document.getElementById('users').style.display = 'none';
+        document.getElementById('sold_reserve').style.display = 'none';
+    }
+</script>
+</body>
+
+</html>

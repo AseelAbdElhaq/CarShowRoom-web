@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+}
+
+header {
+    height: 80px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    text-shadow: 1px 1px 2px darkblue, 0 0 25px rgba(254, 255, 250, 255), 0 0 5px #f16548;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+}
+
+.car-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.car-gallery {
+    max-width: 50%;
+    margin-right: 20px;
+}
+
+.main-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-image img {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnails img {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    object-fit: cover;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.thumbnails img:hover, .thumbnails img.active {
+    border-color: #333;
+}
+
+.car-info {
+    flex: 1;
+    max-width: 50%;
+}
+
+
+.car-info p {
+    margin: 5px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    margin-bottom: 25%;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.form-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-container input[type="text"],
+.form-container input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.forms-container {
+    display: flex;
+    width: 200%;
+
+}
+
+.form-container {
+    flex: 1;
+    margin-right: 20px; /* Adjust spacing between forms */
+}
+
+.form-container:last-child {
+    margin-right: 0; /* Remove margin from the last form */
+}
+
+.car-title {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+}

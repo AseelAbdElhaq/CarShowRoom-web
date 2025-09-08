@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+
+    <style>
+        body {
+            font-family: FOGLIGHT;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f7fb;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            margin: 0 20px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header i {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: FOGLIGHT;
+        }
+
+        .card-body {
+            margin-bottom: 20px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+        }
+
+        .card-body .button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: FOGLIGHT;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-body .button:hover {
+            background-color: #00000019;
+        }
+
+        .card-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-form label {
+            margin-bottom: 5px;
+        }
+
+        .card-form input,
+        .card-form textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card-form textarea {
+            resize: vertical;
+        }
+
+        .card-form select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card-form button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 1%;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-form button:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1 style="text-align: center;">Contact Information</h1>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-phone-alt"></i>
+            <img src="static\images\phone_icon.png" alt="Icon" width="25" height="20">
+            <div class="card-title">Through the Phone</div>
+        </div>
+
+        <div class="card-body">
+            <p>Palestine- Ramallah</p>
+            <p>+972 0598585751</p>
+            <p>Palestine- Hebron</p>
+            <p>+972 0598347004</p>
+        </div>
+        <div class="card-body">
+            <a href="#" class="button">Learn More</a>
+        </div>
+        <iframe width="413" height="350" frameborder="0"
+                scrolling="no" marginheight="0" marginwidth="0"
+                src="https://maps.google.com/maps?
+        f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;
+        q=Ramallah,+Palestine&amp;
+        aq=&amp;sll=31.903764,35.203418&amp;
+        sspn=53.87374,114.082031&amp;
+        ie=UTF8&amp;hq=&amp;hnear=Ramallah,+Palestine&amp;
+        t=m&amp;z=14&amp;ll=31.903764,35.203418&amp;output=embed">
+        </iframe>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-envelope"></i>
+            <img src="static\images\email_icon.jpg" alt="Icon" width="25" height="20">
+            <div class="card-title">Through Email</div>
+        </div>
+
+        <div class="card-body">
+            <p>Kindely Note: If you are inquiring about a car please do so through the phone number on screen for more
+                information </p>
+        </div>
+
+        <div class="card-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+            <label for="subject">Reason for contact</label>
+            <select id="subject" name="subject">
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Feedback">Feedback</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="message">Additional information you would like us to know</label>
+            <textarea id="message" name="message" placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+            <a href="/"><button type="button">Back to home</button></a>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

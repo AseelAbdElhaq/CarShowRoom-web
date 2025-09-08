@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show all cars</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .banner {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .banner h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* Section for back, raised slightly more */
+        .banner .back {
+            margin-top: auto;
+            /* Pushes this section to the bottom */
+            margin-bottom: 30px;
+            /* Raised further up */
+        }
+
+        .banner .back a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px 0;
+            /* Increased padding for better click ability */
+        }
+
+        .banner .back a:hover {
+            background-color: white;
+            width: 100%;
+            text-align: center;
+            color: #007EE5;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .box {
+            width: 500px;
+            height: auto;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .data {
+            margin-bottom: 10px;
+        }
+
+        .car-img {
+            width: 400px;
+            height: 400px;
+            border-radius: 20%;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="banner">
+    <div class="back">
+        <form action="/insert" method="GET">
+            <button type="submit">Back</button>
+        </form>
+        <form action="/" method="GET">
+            <button type="submit">Back to Home</button>
+        </form>
+    </div>
+    <h1>Car Inventory</h1>
+</div>
+
+<div class="container">
+    {% for car in cars %}
+    <div class="box">
+        <img class="car-img" alt="car image" src={{ car['image'] }} >
+        <div class="data">
+            <span class="label">SSN:</span>
+            <span>{{ car['SSN'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Manufacturing company:</span>
+            <span>{{ car['ManufacturingCompany'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Model:</span>
+            <span>{{ car['Model'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Color:</span>
+            <span>{{ car['Color'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Release year:</span>
+            <span>{{ car['ReleaseYear'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Motor size:</span>
+            <span>{{ car['MotorSize'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Fuel type:</span>
+            <span>{{ car['FuelType'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Transmission Type:</span>
+            <span>{{ car['TransmissionType'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Chassis number:</span>
+            <span>{{ car['ChassisNumber'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Price:</span>
+            <span>{{ car['Price'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Branch Number:</span>
+            <span>{{ car['BranchNumber'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Sold:</span>
+            <span>{{ car['is_Sold'] }}</span>
+        </div>
+        <div class="data">
+            <span class="label">Reserved:</span>
+            <span>{{ car['is_Reserved'] }}</span>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

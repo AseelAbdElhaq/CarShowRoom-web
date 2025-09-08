@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ car['Model'] }} - Car Showroom</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='car.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Sinjlawi Auto</h1>
+        <a href="{{ url_for('index') }}">
+            <img id="logo" src="{{ url_for('static', filename='images/sinjlawi_auto.png') }}" alt="Logo Image">
+        </a>
+    </header>
+
+    <div class="car-details-container">
+        <div class="car-gallery">
+            <div class="main-image">
+                <img id="current" src="{{ car['image'] }}" alt="Car Image">
+            </div>
+            <div class="car-info">
+                <div class="car-title">
+                    <h2>{{ car['ManufacturingCompany'] }} {{ car['Model'] }}</h2>
+                    <h2 style="margin-left: 100px; color: brown;">Price: ${{ car['Price'] }}K</h2>
+                </div>
+                <p><strong>Year:</strong> {{ car['ReleaseYear'] }}</p>
+                <p><strong>Color:</strong> {{ car['Color'] }}</p>
+                <p><strong>Fuel Type:</strong> {{ car['FuelType'] }}</p>
+                <p><strong>Transmission:</strong> {{ car['TransmissionType'] }}</p>
+                <p><strong>Motor Size:</strong> {{ car['MotorSize'] }} L</p>
+                <p><strong>Chassis Number:</strong> {{ car['ChassisNumber'] }}</p>
+                <p><strong>Branch Number:</strong> {{ car['BranchNumber'] }}</p>
+                <p><strong>Owner SSN:</strong> {{ car['SSN'] }}</p>
+
+                <div class="forms-container">
+                    <div class="form-container">
+                        <form action="{{ url_for('book_car', chassis_number=car['ChassisNumber']) }}" method="POST">
+                            <h3>Book a Car</h3>
+                            <label for="book_ssn">SSN:</label>
+                            <input type="text" id="book_ssn" name="ssn" required>
+                            <label for="book_name">Name:</label>
+                            <input type="text" id="book_name" name="name" required>
+                            <label for="book_address">Address:</label>
+                            <input type="text" id="book_address" name="address" required>
+                            <label for="book_phone">Phone Number:</label>
+                            <input type="tel" id="book_phone" name="phone" required>
+                            <input type="submit" value="Book">
+                        </form>
+                    </div>
+
+                    <div class="form-container">
+                        <form action="{{ url_for('buy_car', chassis_number=car['ChassisNumber']) }}" method="POST">
+                            <h3>Buy a Car</h3>
+                            <label for="buy_ssn">SSN:</label>
+                            <input type="text" id="buy_ssn" name="ssn" required>
+                            <label for="buy_name">Name:</label>
+                            <input type="text" id="buy_name" name="name" required>
+                            <label for="buy_address">Address:</label>
+                            <input type="text" id="buy_address" name="address" required>
+                            <label for="buy_phone">Phone Number:</label>
+                            <input type="tel" id="buy_phone" name="phone" required>
+                            <input type="submit" value="Buy">
+                        </form>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
+            </div>
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sinjlawi Auto. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

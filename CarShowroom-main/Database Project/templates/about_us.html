@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get to know us</title>
+    <style>
+        body {
+            font-family: FOGLIGHT;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f7fb;
+        }
+
+        .header {
+            background-color: #f2f7fb;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .about-us {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin: 20px 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .section h2 {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .section-content {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 30%;
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .team-member h3 {
+            margin: 0;
+        }
+
+        .team-member .position {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            margin: 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            font-size: 1.5em;
+            color: #888;
+        }
+
+        .back-to-home {
+            margin: 20px 0;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Get To Know Our Team</h1>
+    </div>
+    <div class="image-container">
+        <img src="static\images\about_us.jpg" alt="Team Image" width="50">
+    </div>
+    <div class="about-us">
+        <div class="section">
+            <h2 onclick="toggleInfo('section1')">SINJLAWI AUTO <span class="plus-icon">+</span></h2>
+            <div id="section1" class="section-content">
+                <p>Sinjlawi auto was founded in 1993 when the owner decided that a showroom needed to be created in
+                    order to accomodate diffrent types of customers starting with those who want luxury to those that
+                    want functionality and comfort.</p>
+            </div>
+        </div>
+        <div class="section">
+            <h2 onclick="toggleInfo('section2')">Who We Are <span class="plus-icon">+</span></h2>
+            <div id="section2" class="section-content">
+                <p>To know us a little bit more personally scroll down a little and let us individually introduce
+                    ourselves to you.</p>
+            </div>
+        </div>
+        <div class="section">
+            <h2 onclick="toggleInfo('section3')">What We Do <span class="plus-icon">+</span></h2>
+            <div id="section3" class="section-content">
+                <p>We work as a team to help provide you with the best experience while searching for a car that suits
+                    you and your prefrences where you are offered the best prices as well as withholding the upmost
+                    respect for our customers !!.</p>
+            </div>
+        </div>
+        <div class="section">
+            <h2 onclick="toggleInfo('section4')">Get to know us personally <span class="plus-icon">+</span></h2>
+            <div id="section4" class="section-content">
+                <p>See below.</p>
+            </div>
+        </div>
+        <div class="team">
+            <div class="team-member">
+                <img src="static\images\Deema.jpg" alt="" class="user-img">
+                <h3>Deema Abu Nimeh</h3>
+                <span class="position">Manager</span>
+                <p>My name is Deema Abu Nimeh, and I help with customer issues and well as taking charge of filling up
+                    stock and keeping our employees updated on the latest releases in the car world as well as keeping
+                    the employees updated on customer needs to make sure any customer that shops with us is beyond
+                    satisfied.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="static\images\Aseel.jpg" alt="" class="user-img">
+                <h3>Aseel Abd ElHaq</h3>
+                <span class="position">Owner</span>
+                <p>I'm Aseel Abd ElHaq, and with over 20 years of working in the field you can rest assured I will be
+                    able to find a car that suits you best and accommodates your needs whether it's a car for a family
+                    or a luxurious car of your choice! Make sure to come visit me to help you pick out your dream
+                    car.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="static\images\Moaid.jpg" alt="" class="user-img">
+                <h3>Moaid Karakra</h3>
+                <span class="position">Car specialist</span>
+                <p>I'm Moaid Karakra, and with over 20 years of working in the field you can rest assured I will be able
+                    to find a car that suits you best and accommodates your needs whether it's a car for a family or a
+                    luxurious car of your choice! Make sure to come visit me to help you pick out your dream car.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="static\images\Qusay.jpg" alt="" class="user-img">
+                <h3>Qusay Taradeh</h3>
+                <span class="position">Car exterior and interior specialist</span>
+                <p>I'm Qusay Taradah, and I'm here to help you decide on the best car interior that suits your needs
+                    whether it's for your luxury car or your family SUV to make sure it's stain-proof and kid-proof at
+                    best! Be sure to find me when looking for a car interior that suits your needs.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <a style="" href="\" class="back-to-home">Back to Home</a>
+    </div>
+</div>
+
+<script>
+    function toggleInfo(id) {
+        const element = document.getElementById(id);
+        if (element.style.display === "none" || element.style.display === "") {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

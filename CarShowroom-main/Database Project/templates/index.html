@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinjlawi Auto</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div id="top-section">
+    <video autoplay muted loop id="myVideo">
+        <source src="static/images/car2_background.mp4" type="video/mp4">
+    </video>
+    <h1>Sinjlawi Auto</h1>
+    <ul id="pagebar">
+        <li><a title="Go to Sinjlawi Auto Car Showroom Home" href="">Home</a></li>
+        <li>
+            <form method="POST" action="/about_us"><a title="About Sinjlawi Auto" href="about_us">About Us</a></form>
+        </li>
+        <li>
+            <form method="POST" action="/contact_us"><a title="Customer Service" href="contact_us">Contact Us</a></form>
+        </li>
+        <li><a title="Login Sinjlawi Auto Employee" href="login"><strong>Login</strong></a></li>
+    </ul>
+</div>
+
+
+<div id="bottom-section">
+    <h2 id="B_h2">Let’s find your perfect car</h2>
+
+    <div>
+        <form method="GET" action="/filter_cars" class="filter-bar">
+            <h3>Filter Cars ({{ num_of_cars }})</h3>
+            <label for="car">Manufacturing Company:</label>
+            <select id="car" name="car">
+                <option value="" disabled selected>All</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="BMW">BMW</option>
+                <option value="JEEP">JEEP</option>
+                <option value="Audi">Audi</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Skoda">Skoda</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Ford">Ford</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Kia">Kia</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Toyota">Toyota</option>
+            </select>
+
+            <label for="model">Model:</label>
+            <select id="model" name="model">
+                <option value="" disabled selected>Select</option>
+                <option value="SUV">SUV</option>
+                <option value="Pick-Up">Pick-Up</option>
+                <option value="Van">Van</option>
+                <option value="4x4">4x4</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Coupes">Coupes</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="1995" max="2025">
+
+            <label for="color">Color:</label>
+            <select id="color" name="color">
+                <option value="" disabled selected>Select</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Gray">Gray</option>
+                <option value="Brown">Brown</option>
+                <option value="Green">Green</option>
+            </select>
+
+            <label for="price">Price$K:</label>
+            <input type="number" id="price" name="price" min="20.00">
+
+            <label for="fuel">Fuel Type:</label>
+            <select id="fuel" name="fuel">
+                <option value="" disabled selected>Select</option>
+                <option value="Gas">Gas</option>
+                <option value="Solar">Solar</option>
+                <option value="Electric">Electric</option>
+            </select>
+
+            <label for="transmission">Transmission:</label>
+            <select id="transmission" name="transmission">
+                <option value="" disabled selected>Select</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+
+            <label for="motor_size">Motor Size:</label>
+            <select id="motor_size" name="motor_size">
+                <option value="" disabled selected>Select</option>
+                <option value="1.2">1200</option>
+                <option value="1.4">1400</option>
+                <option value="1.6">1600</option>
+                <option value="2">2000</option>
+            </select>
+
+            <label for="chassis_number">Chassis Number:</label>
+            <input type="text" id="chassis_number" name="chassis_number" maxlength="17"
+                   pattern="^(?!.*[OIoi])[A-Za-z0-9]{1,17}$">
+
+            <label for="branch_number">Branch Number:</label>
+            <select id="branch_number" name="branch_number">
+                <option value="" disabled selected>Select</option>
+                <option value="B001">B001</option>
+                <option value="B002">B002</option>
+            </select>
+
+            <label for="owner_ssn">Owner SSN:</label>
+            <input type="text" id="owner_ssn" name="owner_ssn">
+
+            <label for="reserved">Reserved:</label>
+            <select id="reserved" name="reserved">
+                <option value="" disabled selected>All</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="sold">Sold:</label>
+            <select id="sold" name="sold">
+                <option value="" disabled selected>All</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+
+    <div class="car-container">
+        {% if message %}
+        <div class="message">
+            <h2>{{ message }}</h2>
+        </div>
+        {% endif %}
+        {% for car in cars %}
+        <div class="car">
+            <a href="{{ car['ChassisNumber'] }}">
+                <img alt="car image" src={{ car['image'] }} >
+                <h4>{{ car['ManufacturingCompany'] }}</h4>
+                <p>Model: {{ car['Model'] }}</p>
+                <h4>${{ car['Price'] }}K</h4>
+
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
