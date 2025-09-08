@@ -22,6 +22,4 @@ It provides SQL scripts for creating and managing tables, inserting sample data,
 - **Tools:** MySQL Workbench / phpMyAdmin  
 - **Design:** ERD, relational schema  
 
----
 
-## 📂 Project Structure
