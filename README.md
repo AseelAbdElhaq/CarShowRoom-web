@@ -24,4 +24,26 @@ It provides SQL scripts for creating and managing tables, inserting sample data,
 
 ---
 
-## 📂 Project Structure
+## 🗄️ Database Design (ERD)
+
+### 📌 ERD Diagram
+**PNG version (default):**  
+![Car Showroom ERD](car_showroom_final_erd.png)
+
+**SVG version (scalable, best for zooming):**  
+![Car Showroom ERD](car_showroom_final_erd.svg)
+
+---
+
+## ▶️ How to Run
+1. Install a SQL database system (e.g., MySQL).  
+2. Open **`Car_showroom.sql`** in MySQL Workbench.  
+3. Run the script to create the database, tables, and sample data.  
+4. Use queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) to interact with the system.  
+
+---
+
+## 📄 About
+This project was developed as part of a **Database Systems course**.  
+It demonstrates how relational databases can be applied to manage car showroom operations effectively.  
+
