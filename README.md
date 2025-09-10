@@ -28,8 +28,9 @@ It provides SQL scripts for creating and managing tables, inserting sample data,
 
 ### 📌 ERD Diagram
 **PNG version (default):**  
-![Car Showroom ERD](car_showroom_final_erd.png)
-
+![Car Showroom ERD](u1.png)
+![Car Showroom ERD](u2.png)
+![Car Showroom ERD](u3.png)
 
 
 ---
