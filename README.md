@@ -30,8 +30,7 @@ It provides SQL scripts for creating and managing tables, inserting sample data,
 **PNG version (default):**  
 ![Car Showroom ERD](car_showroom_final_erd.png)
 
-**SVG version (scalable, best for zooming):**  
-![Car Showroom ERD](car_showroom_final_erd.svg)
+
 
 ---
 
